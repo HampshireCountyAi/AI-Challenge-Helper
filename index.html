@@ -950,7 +950,7 @@
                                 <li>Continue your app development conversation directly in the main Poe chat</li>
                                 <li>Your AI mentor will guide you through the development process</li>
                                 <li>If unsure where you left off, ask your mentor to summarize your progress</li>
-                                <li>If the conversation gets confused, call <strong>@Llama-4-Maverick</strong> to analyze the full context and get back on track</li>
+                                <li>If the conversation gets confused, call <strong>@Claude-Sonnet-4.6</strong> to analyze the full context and get back on track</li>
                             </ul>
                         </div>
                     </div>
@@ -1296,7 +1296,7 @@ CRITICAL CONSTRAINTS AND GUIDANCE:
         let suggestedChange = null;
         
         let fullPromptGenerated = '';
-        const selectedModel = "Claude-Sonnet-4";
+        const selectedModel = "Claude-Sonnet-4.6";
 
         // Dark mode detection
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -1350,7 +1350,7 @@ CRITICAL CONSTRAINTS AND GUIDANCE:
                     }
                     
                     // Forward the user's message to Claude with full context
-                    const forwardedMessage = `@Claude-Sonnet-4 [User via AI App Ideator]: ${userMessage}
+                    const forwardedMessage = `@Claude-Sonnet-4.6 [User via AI App Ideator]: ${userMessage}
                     
 Context: You are my app development mentor. Continue our conversation naturally as if the user typed this message directly to you. Maintain the character and context from our previous discussion.`;
                     
@@ -1475,7 +1475,7 @@ Context: You are my app development mentor. Continue our conversation naturally 
                 });
 
                 // Enhanced routing prompt with sequence understanding and HTML detection
-                const routingPrompt = `@Llama-4-Maverick You are an intelligent app router that analyzes conversation history to determine where the user is in their app development journey. 
+                const routingPrompt = `@Claude-Sonnet-4.6 You are an intelligent app router that analyzes conversation history to determine where the user is in their app development journey. 
 
 CRITICAL SEQUENCE UNDERSTANDING:
 The app development follows this specific sequence:
@@ -2644,9 +2644,9 @@ Please start by greeting me warmly (using age-appropriate style) and asking your
                 console.log("🚀 Launching chat with prompt length:", fullPromptGenerated.length);
                 
                 // Step 1: Send system instruction to ensure bot stays engaged
-                const systemInstruction = "You are the AI development mentor for this conversation. You will respond to ALL user messages in this chat without requiring explicit @Claude-Sonnet-4 mentions after this setup. Stay in character and maintain conversation context throughout our entire app development session.";
+                const systemInstruction = "You are the AI development mentor for this conversation. You will respond to ALL user messages in this chat without requiring explicit @Claude-Sonnet-4.6 mentions after this setup. Stay in character and maintain conversation context throughout our entire app development session.";
                 
-                await window.Poe.sendUserMessage(`@Claude-Sonnet-4 ${systemInstruction}`, {
+                await window.Poe.sendUserMessage(`@Claude-Sonnet-4.6 ${systemInstruction}`, {
                     openChat: true,
                     stream: true
                 });
@@ -2656,7 +2656,7 @@ Please start by greeting me warmly (using age-appropriate style) and asking your
                 // Step 2: Send the framework with explicit bot assignment
                 setTimeout(async () => {
                     try {
-                        const frameworkMessage = `@Claude-Sonnet-4 ${fullPromptGenerated}`;
+                        const frameworkMessage = `@Claude-Sonnet-4.6 ${fullPromptGenerated}`;
                         
                         await window.Poe.sendUserMessage(frameworkMessage, {
                             openChat: true,
@@ -2668,7 +2668,7 @@ Please start by greeting me warmly (using age-appropriate style) and asking your
                         // Step 3: Send confirmation to lock in the assignment
                         setTimeout(async () => {
                             try {
-                                const confirmationMessage = "@Claude-Sonnet-4 Perfect! You should now respond to all my messages in this conversation automatically. Please greet me warmly now using the age-appropriate style and ask your first question to begin our app development journey!";
+                                const confirmationMessage = "@Claude-Sonnet-4.6 Perfect! You should now respond to all my messages in this conversation automatically. Please greet me warmly now using the age-appropriate style and ask your first question to begin our app development journey!";
                                 
                                 await window.Poe.sendUserMessage(confirmationMessage, {
                                     openChat: true,
@@ -2745,7 +2745,7 @@ Please start by greeting me warmly (using age-appropriate style) and asking your
                         
                     } catch (routingErr) {
                         console.error("❌ Error initializing routing:", routingErr);
-                        showCustomAlert("Manual mode partially activated. You can continue your conversation in the main chat, but may need to use @Claude-Sonnet-4 mentions.");
+                        showCustomAlert("Manual mode partially activated. You can continue your conversation in the main chat, but may need to use @Claude-Sonnet-4.6 mentions.");
                     }
                     
                 } else {
@@ -2753,7 +2753,7 @@ Please start by greeting me warmly (using age-appropriate style) and asking your
                     console.log("🆕 Starting fresh conversation in manual mode...");
                     
                     try {
-                        const contextMessage = `@Claude-Sonnet-4 I'm using the AI App Ideator in manual mode. Please guide me through interactive app development using natural conversation.
+                        const contextMessage = `@Claude-Sonnet-4.6 I'm using the AI App Ideator in manual mode. Please guide me through interactive app development using natural conversation.
 
 Development sequence: Exploratory Discussion → App Specifications → App Generation
 
@@ -2761,7 +2761,7 @@ ${frameworkGuidance}
 
 Please start by asking what app idea I'd like to explore and guide our conversation naturally. Focus on solutions that work within Poe and help me build something amazing in 2 hours or less.
 
-If you need full context recovery at any point, I can call @Llama-4-Maverick to analyze our complete conversation history.
+If you need full context recovery at any point, I can call @Claude-Sonnet-4.6 to analyze our complete conversation history.
 
 Let's build an amazing app prototype using only Poe tools!`;
                         
@@ -2785,7 +2785,7 @@ Let's build an amazing app prototype using only Poe tools!`;
                         
                     } catch (sendErr) {
                         console.error("❌ Error sending setup message:", sendErr);
-                        showCustomAlert(`Failed to send setup message: ${sendErr.message}. You can manually start by sending a message to @Claude-Sonnet-4 in the main chat.`);
+                        showCustomAlert(`Failed to send setup message: ${sendErr.message}. You can manually start by sending a message to @Claude-Sonnet-4.6 in the main chat.`);
                     }
                 }
                 
@@ -2800,7 +2800,7 @@ Let's build an amazing app prototype using only Poe tools!`;
                     stack: err.stack
                 });
                 
-                showCustomAlert(`Manual mode setup failed: ${err.message}. You can continue your conversation manually in the main chat using @Claude-Sonnet-4 mentions.`);
+                showCustomAlert(`Manual mode setup failed: ${err.message}. You can continue your conversation manually in the main chat using @Claude-Sonnet-4.6 mentions.`);
                 hideManualModeModal();
             }
         }
@@ -3121,7 +3121,7 @@ Let's build an amazing app prototype using only Poe tools!`;
                 });
 
                 // Send JSON repair request to Llama
-                const repairPrompt = `@Llama-4-Maverick I have malformed JSON that needs to be fixed. The original parsing error was: "${errorMessage}"
+                const repairPrompt = `@Claude-Sonnet-4.6 I have malformed JSON that needs to be fixed. The original parsing error was: "${errorMessage}"
 
 Here's the malformed JSON content:
 \`\`\`
@@ -3434,7 +3434,7 @@ Return ONLY the fixed JSON object with no additional text or explanations.`;
 
 Now please greet the young innovator warmly and ask your first question using the age-appropriate style defined above.`;
 
-                await window.Poe.sendUserMessage(`@Claude-Sonnet-4 ${initPrompt}`, {
+                await window.Poe.sendUserMessage(`@Claude-Sonnet-4.6 ${initPrompt}`, {
                     handler: "mentor-init-handler",
                     stream: false,
                     openChat: false
@@ -3572,7 +3572,7 @@ Now please greet the young innovator warmly and ask your first question using th
                 });
 
                 // Ask for a summary of the last few relevant messages
-                const contextPrompt = `@Claude-Sonnet-4 Please provide a brief summary of where we left off in our app development conversation. Include:
+                const contextPrompt = `@Claude-Sonnet-4.6 Please provide a brief summary of where we left off in our app development conversation. Include:
 
 1. What we were last working on
 2. Any specific progress made  
@@ -3762,7 +3762,7 @@ If you can't find relevant context, just say "I don't have clear context from ou
                 });
                 
                 // Send message to AI with context
-                const contextualMessage = `@Claude-Sonnet-4 You are ${currentSessionData.characterName}. Continue our app development conversation naturally.
+                const contextualMessage = `@Claude-Sonnet-4.6 You are ${currentSessionData.characterName}. Continue our app development conversation naturally.
 
 Context: We're working on "${currentSessionData.activityDescription}" in the ${currentSessionData.activityType} category.
 
@@ -3945,7 +3945,7 @@ Respond naturally as the AI mentor, helping guide the conversation toward concre
                 });
                 
                 // Send to AI
-                const draftPrompt = `@Claude-Sonnet-4 You are an expert app design consultant helping create detailed specifications for an AI-powered app.
+                const draftPrompt = `@Claude-Sonnet-4.6 You are an expert app design consultant helping create detailed specifications for an AI-powered app.
 
 Context:
 - Problem/Vision: ${currentSessionData.activityDescription}
@@ -4137,7 +4137,7 @@ Your existing app code and conversation context will be preserved. After setup, 
 *Setting up automatic responses...*`;
                 
                 // Send explanatory message to main chat first
-                await window.Poe.sendUserMessage(`@Claude-Sonnet-4 ${redirectionMessage}`, {
+                await window.Poe.sendUserMessage(`@Claude-Sonnet-4.6 ${redirectionMessage}`, {
                     openChat: true,
                     stream: true
                 });
@@ -4222,7 +4222,7 @@ What specific improvements or additions would you like me to help you with for y
                 
                 // Show a special routing banner
                 showRoutingBanner(
-                    '����️ HTML App Detected - Setting up App-Creator', 
+                    '    ️ HTML App Detected - Setting up App-Creator', 
                     'Your working app was detected. Setting up App-Creator for automatic responses.'
                 );
                 
